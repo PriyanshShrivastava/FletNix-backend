@@ -2,7 +2,17 @@ const Shows = require("../model/showModel.js");
 
 const getAllData = async (req, res) => {
   try {
-    const shows = await Shows.find({}).limit(15);
+    console.log(req.query);
+    // Get the page number from the request
+    const page = parseInt(req.params?.page) || 1;
+
+    // Set the number of items to display per page
+    const limit = 15;
+
+    // Calculate the number of items to skip
+    const skip = (page - 1) * limit;
+
+    const shows = await Shows.find({}).skip(skip).limit(limit);
     if (!shows) {
       res.status(404).send({
         success: false,
@@ -14,10 +24,32 @@ const getAllData = async (req, res) => {
       success: true,
       shows,
     });
-  } catch (err) {
+  } catch (error) {
     console.error(error);
     res.status(500).send({ sucess: false, error });
   }
 };
 
-module.exports = getAllData;
+const getSpecificShow = async (req, res) => {
+  try {
+    const { show_id } = req.params;
+    const show = await Shows.find({ show_id: show_id });
+
+    if (!show) {
+      res.status(404).send({
+        success: false,
+        message: "No shows available",
+      });
+    }
+
+    res.status(200).send({
+      success: true,
+      show,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ sucess: false, error });
+  }
+};
+
+module.exports = { getAllData, getSpecificShow };
