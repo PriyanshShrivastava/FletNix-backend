@@ -13,4 +13,4 @@ const loginTokenCheck = (req, res, next) => {
   }
 };
 
-module.export = loginTokenCheck;
+module.exports = loginTokenCheck;

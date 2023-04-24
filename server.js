@@ -1,6 +1,6 @@
 const express = require("express");
 const authRoute = require("./routes/authRoute.js");
-const movieRoute = require("./routes/movieRoute.js");
+const showRoute = require("./routes/showsRoute.js");
 const connectDB = require("./config/db.js");
 const cors = require("cors");
 require("dotenv").config();
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/movies", movieRoute);
+app.use("/api/v1/movies", showRoute);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
