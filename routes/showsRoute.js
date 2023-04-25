@@ -6,7 +6,7 @@ const { getAllData, getSpecificShow } = require("../controller/getAllData.js");
 const router = express.Router();
 
 //get-all movies and tv shows
-router.get("/shows/:page?", getAllData);
+router.get("/shows/:page?", loginTokenCheck, getAllData);
 
 //get specific movie detail
 router.get("/single-show/:show_id", loginTokenCheck, getSpecificShow);
