@@ -76,9 +76,13 @@ const loginUser = async (req, res) => {
         .send({ sucess: false, message: "Incorrect password" });
     }
     // Token creation
-    const token = await JWT?.sign({ _id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "5d",
-    });
+    const token = await JWT?.sign(
+      { _id: user._id, email: user.email, name: user.name, age: user.age },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "5d",
+      }
+    );
     res.status(200).send({
       success: true,
       message: "Succesfully Logged in",
