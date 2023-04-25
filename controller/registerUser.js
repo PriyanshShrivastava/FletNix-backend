@@ -4,7 +4,7 @@ const { comparePassword, hashPassword } = require("../helpers/authHelper.js");
 
 const registerUser = async (req, res) => {
   try {
-    const { email, password, age } = req.body;
+    const { name, email, password, age } = req.body;
 
     if (!email) {
       return res.send({ message: "Please enter an email" });
@@ -14,6 +14,9 @@ const registerUser = async (req, res) => {
     }
     if (!age) {
       return res.send({ message: "Please enter your age" });
+    }
+    if (!name) {
+      return res.send({ message: "Please enter your name" });
     }
 
     const existingUser = await userModel.findOne({ email });
@@ -28,6 +31,7 @@ const registerUser = async (req, res) => {
     // Register User
     const hashedPassword = await hashPassword(password);
     const newUser = await new userModel({
+      name,
       email,
       password: hashedPassword,
       age,
@@ -82,6 +86,7 @@ const loginUser = async (req, res) => {
         _id: user._id,
         email: user.email,
         age: user.age,
+        name: user.name,
       },
       token,
     });
