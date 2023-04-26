@@ -11,4 +11,5 @@ router.post("/register", registerUser);
 //Routing to login user
 router.post("/login", loginUser);
 
+// exporting router
 module.exports = router;

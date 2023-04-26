@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Database shows schema
 const showSchema = new mongoose.Schema({
   show_id: {
     type: String,

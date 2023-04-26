@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 
+// Encryptic password
 const hashPassword = async (password) => {
   try {
     const saltRounds = 10;
@@ -10,6 +11,7 @@ const hashPassword = async (password) => {
   }
 };
 
+// comparing the encrypted password
 const comparePassword = async (password, hashedPassword) => {
   return bcrypt.compare(password, hashedPassword);
 };

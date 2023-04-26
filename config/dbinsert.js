@@ -6,11 +6,12 @@ require("dotenv").config();
 
 const Shows = require("../model/showModel.js");
 
+// Building connection url
 const url = process.env.MONGO_URL.replace(
   "<PASSWORD>",
   process.env.MONGO_PASSWORD
 );
-
+// calling connect on mongoose and passing the connection String
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,12 +23,14 @@ db.on("error", (error) => {
   console.error("MongoDB connection error:", error);
 });
 
+// Calling when the connedting to mongodb is open
 db.once("open", () => {
   console.log("MongoDB connection established");
   let counter = 0;
   fs.createReadStream(filename)
     .pipe(csv())
     .on("data", async (row) => {
+      // Converting the comma seperated value to an array
       row.cast = String(row.cast)
         .split(",")
         .map((oneCast) => String(oneCast).trim());
