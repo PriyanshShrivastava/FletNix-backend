@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
     console.error(error);
     res.status(500).send({
       success: false,
-      message: `Error aa gya bhai`,
+      message: `Error creating account. Please try again later`,
     });
   }
 };
