@@ -11,4 +11,5 @@ router.get("/shows/:page?", loginTokenCheck, getAllData);
 //get specific movie detail
 router.get("/single-show/:show_id", loginTokenCheck, getSpecificShow);
 
+// exporting router
 module.exports = router;

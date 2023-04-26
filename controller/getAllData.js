@@ -52,9 +52,12 @@ const getAllData = async (req, res) => {
   }
 };
 
+// Specific show handler
 const getSpecificShow = async (req, res) => {
   try {
     const { show_id } = req.params;
+
+    // getting a specific show / movie
     const show = await Shows.findOne({ show_id: show_id });
 
     if (!show) {

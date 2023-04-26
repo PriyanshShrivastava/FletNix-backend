@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const connectDB = async () => {
+  // BUilding connection url
   const DB_URL = process.env.MONGO_URL.replace(
     "<PASSWORD>",
     process.env.MONGO_PASSWORD
