@@ -21,7 +21,7 @@ const getAllData = async (req, res) => {
     }
     if (searchStr) {
       query["$or"] = [
-        // { cast: { $regex: searchStr, $options: "i" } },
+        { cast: { $regex: searchStr, $options: "i" } },
         { title: { $regex: searchStr, $options: "i" } },
       ];
     }
